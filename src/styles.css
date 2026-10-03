@@ -2,23 +2,28 @@
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f2933;
-  background: #efe7df;
+  color: #f5f7fb;
+  background: #07141d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --panel: rgba(255, 255, 255, 0.94);
-  --card: #f5f5f5;
-  --border: #2b2d2f;
-  --ink: #212529;
-  --muted: #6d7580;
-  --primary: #19252e;
-  --accent: #f1c27d;
-  --success: #2c9f72;
-  --warning: #d7962b;
-  --danger: #d85b5b;
-  --shadow: 0 18px 35px rgba(25, 37, 46, 0.12);
+  --bg: #07141d;
+  --bg-soft: #0d1d2a;
+  --panel: rgba(12, 24, 34, 0.9);
+  --panel-alt: rgba(15, 29, 40, 0.82);
+  --card: rgba(18, 34, 46, 0.9);
+  --card-soft: rgba(24, 43, 58, 0.82);
+  --border: rgba(139, 179, 196, 0.24);
+  --ink: #edf6ff;
+  --muted: #a4b7c5;
+  --primary: #72d0ff;
+  --primary-strong: #4ab4f1;
+  --accent: #ffd27a;
+  --success: #67d4a1;
+  --warning: #f4c96d;
+  --danger: #ff7d7d;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 
 * {
@@ -32,7 +37,11 @@ html, body, #root {
 }
 
 body {
-  background: linear-gradient(135deg, #e7ddd0 0%, #ddd1c2 100%);
+  background:
+    radial-gradient(circle at top left, rgba(114, 208, 255, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 210, 122, 0.12), transparent 25%),
+    linear-gradient(135deg, #07141d 0%, #0d1d2a 40%, #0a1520 100%);
+  color: var(--ink);
 }
 
 button, input {
@@ -51,70 +60,92 @@ button {
 }
 
 .auth-layout {
-  width: min(1100px, 100%);
-  min-height: 700px;
+  width: min(1200px, 100%);
+  min-height: 720px;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  background: rgba(255, 255, 255, 0.7);
-  border: 3px solid var(--border);
+  background: rgba(10, 18, 24, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  overflow: hidden;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .brand-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 233, 227, 0.82));
-  padding: 64px 52px;
-  border-right: 3px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(13, 29, 42, 0.97), rgba(17, 39, 54, 0.92)),
+    linear-gradient(120deg, rgba(114, 208, 255, 0.08), transparent);
+  padding: 70px 52px;
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
 }
 
+.brand-panel::before {
+  content: '';
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
 .brand-block {
-  max-width: 450px;
+  max-width: 500px;
+  position: relative;
+  z-index: 1;
 }
 
 .brand-kicker {
   margin: 0;
-  font-size: 1.1rem;
-  letter-spacing: 0.18em;
-  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .brand-panel h1 {
-  margin: 8px 0 16px;
-  font-size: clamp(2.6rem, 5vw, 5rem);
-  line-height: 0.92;
-  letter-spacing: -0.06em;
+  margin: 12px 0 18px;
+  font-size: clamp(3rem, 5vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: white;
 }
 
 .brand-subtext {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   color: var(--muted);
-  max-width: 420px;
+  max-width: 440px;
+  line-height: 1.7;
 }
 
 .feature-list {
-  margin-top: 52px;
+  margin-top: 46px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .feature-list span {
-  border: 2px solid var(--border);
-  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(114, 208, 255, 0.26);
+  background: rgba(114, 208, 255, 0.08);
   border-radius: 999px;
-  padding: 10px 14px;
-  font-size: 0.88rem;
-  color: var(--ink);
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #dfeefb;
 }
 
 .auth-card {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 42px 38px;
+  background: rgba(10, 18, 24, 0.75);
+  padding: 42px 34px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,9 +153,10 @@ button {
 
 .auth-toggle {
   display: flex;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
   margin-bottom: 26px;
 }
 
@@ -132,14 +164,15 @@ button {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 12px 14px;
+  padding: 14px 12px;
   font-weight: 700;
   color: var(--muted);
+  transition: all 0.2s ease;
 }
 
 .auth-toggle button.active {
-  background: var(--primary);
-  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: #07141d;
 }
 
 .auth-form {
@@ -151,48 +184,61 @@ button {
 .auth-form label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 9px;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--ink);
 }
 
 .auth-form input {
-  border: 2px solid rgba(26, 35, 42, 0.45);
+  border: 1px solid rgba(164, 183, 197, 0.28);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.04);
   padding: 14px 15px;
   font-size: 1rem;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus {
+  border-color: rgba(114, 208, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(114, 208, 255, 0.12);
 }
 
 .primary-btn {
-  border: 2px solid var(--border);
-  background: var(--primary);
-  color: white;
+  border: 1px solid rgba(114, 208, 255, 0.4);
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: #07141d;
   border-radius: 12px;
-  padding: 13px 18px;
-  font-weight: 700;
-  transition: transform 0.2s ease;
+  padding: 14px 18px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 24px rgba(74, 180, 241, 0.18);
 }
 
 .primary-btn:hover {
   transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(74, 180, 241, 0.22);
 }
 
 .dashboard-shell {
-  width: min(1280px, 100%);
-  min-height: 780px;
+  width: min(1300px, 100%);
+  min-height: 820px;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  background: rgba(255, 255, 255, 0.7);
-  border: 3px solid var(--border);
+  grid-template-columns: 290px 1fr;
+  background: rgba(8, 18, 25, 0.78);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
 
 .sidebar {
-  background: linear-gradient(180deg, rgba(19, 33, 41, 0.98), rgba(22, 38, 46, 0.98));
+  background: linear-gradient(180deg, rgba(7, 20, 29, 0.98), rgba(13, 29, 42, 0.98));
   color: white;
-  padding: 28px 20px;
+  padding: 28px 20px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -203,26 +249,18 @@ button {
   align-items: center;
   gap: 12px;
   padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .mini-logo {
   width: 42px;
   height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f7d299, #d89d52);
-  color: #20262b;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffd27a, #f4b65d);
+  color: #1d2d38;
   display: grid;
   place-items: center;
-  font-weight: 800;
-}
-
-.tiny-label {
-  margin: 0;
-  letter-spacing: 0.12em;
-  font-size: 0.68rem;
-  opacity: 0.7;
-  text-transform: uppercase;
+  font-weight: 900;
 }
 
 .logo-wrap h2 {
@@ -234,26 +272,50 @@ button {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .nav-item {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.85);
   padding: 12px 14px;
   text-align: left;
+  transition: all 0.2s ease;
 }
 
 .nav-item.active {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(114, 208, 255, 0.08);
+  border-color: rgba(114, 208, 255, 0.22);
   color: white;
 }
 
+.user-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-top: 18px;
+}
+
+.user-badge span {
+  opacity: 0.75;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.user-badge strong {
+  font-size: 1rem;
+}
+
 .logout-btn {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
   color: white;
   border-radius: 10px;
   padding: 12px 14px;
@@ -264,6 +326,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 26px;
+  background: radial-gradient(circle at top left, rgba(114, 208, 255, 0.06), transparent 22%);
 }
 
 .topbar {
@@ -277,6 +340,7 @@ button {
   margin: 4px 0 0;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   letter-spacing: -0.05em;
+  color: white;
 }
 
 .stats-grid {
@@ -286,23 +350,25 @@ button {
 }
 
 .stat-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(19, 34, 46, 0.94), rgba(13, 26, 36, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 20px;
   padding: 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: inset 0 1px rgba(255,255,255,0.03);
 }
 
 .stat-card span {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .stat-card strong {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
   letter-spacing: -0.05em;
+  color: white;
 }
 
 .content-grid {
@@ -313,9 +379,9 @@ button {
 }
 
 .upload-panel, .queue-panel {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(17, 30, 40, 0.93), rgba(11, 18, 25, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 22px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -332,20 +398,21 @@ button {
 .panel-header h4 {
   margin: 0;
   font-size: 1.2rem;
+  color: white;
 }
 
 .panel-header span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .upload-box {
-  border: 2px dashed rgba(33, 37, 41, 0.6);
+  border: 1px dashed rgba(114, 208, 255, 0.44);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 30px 18px;
+  background: rgba(114, 208, 255, 0.03);
+  padding: 28px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -354,6 +421,12 @@ button {
   gap: 8px;
   min-height: 210px;
   cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.upload-box:hover {
+  background: rgba(114, 208, 255, 0.06);
+  border-color: rgba(114, 208, 255, 0.8);
 }
 
 .upload-box input {
@@ -361,17 +434,19 @@ button {
 }
 
 .upload-icon {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: rgba(25, 37, 46, 0.08);
+  background: rgba(114, 208, 255, 0.1);
   display: grid;
   place-items: center;
   font-size: 2rem;
+  color: var(--primary);
 }
 
 .upload-box strong {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
+  color: white;
 }
 
 .upload-box small {
@@ -401,14 +476,15 @@ button {
   align-items: center;
   gap: 12px;
   padding: 14px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(33, 37, 41, 0.12);
-  background: rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .queue-item strong {
   display: block;
   margin-bottom: 4px;
+  color: white;
 }
 
 .queue-item small {
@@ -431,43 +507,21 @@ button {
 }
 
 .status.queued {
-  background: rgba(217, 150, 43, 0.12);
-  border-color: rgba(217, 150, 43, 0.55);
-  color: #9a6310;
+  background: rgba(244, 201, 109, 0.14);
+  border-color: rgba(244, 201, 109, 0.5);
+  color: #f9d67d;
 }
 
 .status.printing {
-  background: rgba(41, 117, 255, 0.12);
-  border-color: rgba(41, 117, 255, 0.45);
-  color: #1d5ccf;
+  background: rgba(114, 208, 255, 0.14);
+  border-color: rgba(114, 208, 255, 0.5);
+  color: #9ad8ff;
 }
 
 .status.completed {
-  background: rgba(44, 159, 114, 0.12);
-  border-color: rgba(44, 159, 114, 0.55);
-  color: #1c7b59;
-}
-
-.user-badge {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  margin-top: 18px;
-}
-
-.user-badge span {
-  opacity: 0.7;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.user-badge strong {
-  font-size: 1rem;
+  background: rgba(103, 212, 161, 0.14);
+  border-color: rgba(103, 212, 161, 0.5);
+  color: #9fe8c0;
 }
 
 .admin-actions {
@@ -477,8 +531,9 @@ button {
 }
 
 .admin-actions button {
-  border: 1px solid rgba(33, 37, 41, 0.2);
-  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: white;
   border-radius: 8px;
   font-size: 0.72rem;
   padding: 6px 8px;
@@ -491,9 +546,9 @@ button {
 }
 
 .history-panel {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(17, 30, 40, 0.93), rgba(11, 18, 25, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 22px;
   padding: 20px;
 }
 
@@ -509,17 +564,21 @@ button {
   gap: 14px;
   align-items: center;
   padding: 12px 14px;
-  border: 1px solid rgba(33, 37, 41, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.history-item strong {
+  color: white;
 }
 
 .history-tag {
   display: inline-flex;
   justify-content: center;
-  background: rgba(44, 159, 114, 0.12);
+  background: rgba(103, 212, 161, 0.12);
   color: var(--success);
-  border: 1px solid rgba(44, 159, 114, 0.4);
+  border: 1px solid rgba(103, 212, 161, 0.35);
   border-radius: 999px;
   padding: 6px 10px;
   font-size: 0.76rem;
@@ -535,7 +594,7 @@ button {
 
   .brand-panel {
     border-right: none;
-    border-bottom: 3px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .sidebar {
