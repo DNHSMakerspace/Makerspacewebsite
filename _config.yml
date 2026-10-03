@@ -1,0 +1,22 @@
+name: DNHS Makerspace
+site:
+  root: ./
+  build_dir: dist
+  preview_port: 5173
+build:
+  command: npm install && npm run build
+  output: dist
+runtime:
+  node: 20
+  package_manager: npm
+project:
+  type: static-site
+  framework: vite-react
+  app_name: DNHS Makerspace
+  description: Student 3D printing club website
+hosting:
+  target: github-pages
+  deploy_method: github_actions
+  workflow: .github/workflows/deploy.yml
+  branch: gh-pages
+  repo_required: true

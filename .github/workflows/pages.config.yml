@@ -1,0 +1,2 @@
+# This file is kept for compatibility with static hosting setup flows.
+# The actual GitHub Pages deployment workflow is in deploy.yml.
